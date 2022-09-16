@@ -37,7 +37,7 @@ Snake.prototype.draw = function(ctx){
     ctx.fill();
     
     // Draw snake's body
-    let bodyRadius = this.headRadius/2;
+    let bodyRadius = this.headRadius/1.5;
     this.body.forEach( function(pos) {
         ctx.beginPath();
         ctx.arc(pos[0],pos[1],bodyRadius, 0, 6.28, false);
