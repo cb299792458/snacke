@@ -26,9 +26,9 @@ GameView.prototype.bindKeyHandlers = function(){
     key('s', () => { this.snake.turn([0,+1]) });
     key('d', () => { this.snake.turn([+1,0]) });
     key('up', () => { this.snake.turn([0,-1]) });
-    key('down', () => { this.snake.turn([-1,0]) });
-    key('right', () => { this.snake.turn([0,+1]) });
-    key('left', () => { this.snake.turn([+1,0]) });
+    key('left', () => { this.snake.turn([-1,0]) });
+    key('down', () => { this.snake.turn([0,+1]) });
+    key('right', () => { this.snake.turn([+1,0]) });
 }
 
 

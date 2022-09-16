@@ -1,5 +1,6 @@
 const Snake = require("./snake.js")
 const Snack = require("./snack.js")
+const Util = require("./util.js")
 
 function Game(dimX,dimY){
     this.DIM_X = dimX;
@@ -7,10 +8,20 @@ function Game(dimX,dimY){
     this.snake = new Snake(this);
     this.snacks = [];
     this.over = false;
+
+    this.makeSnack();
+}
+
+Game.prototype.randomPos = function(){
+    return[Math.random()*this.DIM_X,Math.random()*this.DIM_Y]
 }
 
 Game.prototype.allObjects = function(){
-    return [this.snake];
+    return [this.snake].concat(this.snacks);
+}
+
+Game.prototype.makeSnack = function(){
+    this.snacks.push( new Snack(this.randomPos(),"apple" ));
 }
 
 Game.prototype.draw = function(context){
@@ -41,6 +52,21 @@ Game.prototype.checkCollisions = function(){
     if(this.snake.selfBite()){
         this.over = true;
     }
+
+    // Check for eating
+    let snake = this.snake;
+    let game = this;
+    this.snacks.forEach( function(snack){
+        if(Util.hypotenuse(snack.pos,snake.pos)<snake.headRadius*2){
+            snake.eat(snack);
+            game.makeSnack();
+        }
+    });
+}
+
+Game.prototype.destroy = function(obj){
+    // This should find the object and remove it from the array
+    this.snacks = [];
 }
 
 module.exports = Game;

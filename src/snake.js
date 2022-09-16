@@ -4,12 +4,12 @@ const Util = require("./util.js");
 function Snake(game){
     this.game = game;
     this.headRadius = 10;
-    this.color = 'green';
-    // this.color = '#AAFF00';
+    // this.color = 'green';
+    this.color = '#0BDA51';
     
     this.pos = [this.game.DIM_X/2,this.game.DIM_Y-this.headRadius];
     this.vel = [0,-1];
-    this.speed = 2;
+    this.speed = 8;
     this.body = [];
     this.maxLength = 100;
 }
@@ -100,6 +100,11 @@ Snake.prototype.selfBite = function(){
         }
     })
     return result;
+}
+
+Snake.prototype.eat = function(snack){
+    this.maxLength += 20;
+    this.game.destroy(snack);
 }
 
 module.exports = Snake;
