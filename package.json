@@ -1,0 +1,39 @@
+{
+  "name": "snacke",
+  "version": "1.0.0",
+  "description": "This is my roguelike/deckbuilding/snake game.",
+  "main": "index.js",
+
+  "browserslist": [
+    "defaults"
+  ],
+
+  "scripts": {
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"  
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cb299792458/snacke.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cb299792458/snacke/issues"
+  },
+  "homepage": "https://github.com/cb299792458/snacke#readme",
+  "dependencies": {
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.25.1",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.1",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
