@@ -21,7 +21,7 @@ raccoon: allows removing a snack from menu
 pig: expands stomach to hold more snacks
 rabbit: snack powers activate with fewer animals
 monkey: activacte abilities more easily
-goat: grants bonus points
+dog: grants bonus points
 
 
 ACTIVE

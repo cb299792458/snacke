@@ -11,6 +11,8 @@ function Snake(game){
     this.speed = 8;
     this.body = [];
     this.maxLength = 100;
+    this.stomach = [];
+    this.stomachSize = 9;
 }
 
 Snake.prototype.move = function(){
@@ -104,7 +106,10 @@ Snake.prototype.selfBite = function(){
 
 Snake.prototype.eat = function(snack){
     this.maxLength += 20;
+    this.stomach.unshift(snack.type);
+    if(this.stomach.length>this.stomachSize){this.stomach.pop()};
     this.game.destroy(snack);
+    console.log(this.stomach)
 }
 
 module.exports = Snake;

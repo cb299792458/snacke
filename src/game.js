@@ -1,6 +1,22 @@
 const Snake = require("./snake.js")
 const Snack = require("./snack.js")
 const Util = require("./util.js")
+const ANIMALS = [
+    "beaver",
+    "cat",
+    "dog",
+    "fish",
+    "frog",
+    "lizard",
+    "monkey",
+    "pig",
+    "rabbit",
+    "raccoon",
+    "rat",
+    "snail",
+    "squirrel",
+    "turtle"
+]
 
 function Game(dimX,dimY){
     this.DIM_X = dimX;
@@ -9,6 +25,7 @@ function Game(dimX,dimY){
     this.snacks = [];
     this.over = false;
 
+    this.menu = ANIMALS; //make a default menu
     this.makeSnack();
     
 }
@@ -22,7 +39,8 @@ Game.prototype.allObjects = function(){
 }
 
 Game.prototype.makeSnack = function(){
-    let newSnack = new Snack([0,0],"apple");
+    let animal = this.menu[Math.floor(this.menu.length*Math.random())];
+    let newSnack = new Snack([0,0],animal);
     while( Util.outOfBounds(newSnack.pos,this,newSnack.radius) ){
         newSnack.pos = this.randomPos(newSnack.rad);
     }
