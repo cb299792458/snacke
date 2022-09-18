@@ -2,7 +2,7 @@ function Snack(pos,type){
     this.pos = pos;
     this.type = type;
     this.color = 'red'
-    this.radius = 100;
+    this.radius = 10;
 }
 
 Snack.prototype.draw = function(ctx){

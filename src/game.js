@@ -12,11 +12,11 @@ function Game(dimX,dimY){
     this.makeSnack();
 }
 
-Game.prototype.randomPos = function(){
-    let pos=[0,0];
-    while(Util.outOfBounds(pos,this,100)){
-        pos = [Math.random()*this.DIM_X,Math.random()*this.DIM_Y]
-    }
+Game.prototype.randomPos = function(rad){
+    // let pos=[0,0];
+    // while(Util.outOfBounds(pos,this,rad)){
+    let pos = [Math.random()*this.DIM_X,Math.random()*this.DIM_Y];
+    // }
     return pos
 }
 
@@ -25,7 +25,9 @@ Game.prototype.allObjects = function(){
 }
 
 Game.prototype.makeSnack = function(){
-    this.snacks.push( new Snack(this.randomPos(),"apple" ));
+    let newSnack = new Snack([0,0],"apple");
+    newSnack.pos = this.randomPos(newSnack.rad);
+    this.snacks.push( newSnack );
 }
 
 Game.prototype.draw = function(context){
