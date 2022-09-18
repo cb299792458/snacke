@@ -14,7 +14,7 @@ function Game(dimX,dimY){
 
 Game.prototype.randomPos = function(){
     let pos=[0,0];
-    while(Util.outOfBounds(pos,this,10)){
+    while(Util.outOfBounds(pos,this,100)){
         pos = [Math.random()*this.DIM_X,Math.random()*this.DIM_Y]
     }
     return pos
@@ -61,7 +61,7 @@ Game.prototype.checkCollisions = function(){
     let snake = this.snake;
     let game = this;
     this.snacks.forEach( function(snack){
-        if(Util.hypotenuse(snack.pos,snake.pos)<snake.headRadius*2){
+        if(Util.hypotenuse(snack.pos,snake.pos)<snake.headRadius+snack.radius){
             snake.eat(snack);
             game.makeSnack();
         }
