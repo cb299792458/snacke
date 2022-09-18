@@ -10,6 +10,7 @@ function Game(dimX,dimY){
     this.over = false;
 
     this.makeSnack();
+    
 }
 
 Game.prototype.randomPos = function(rad){
@@ -32,10 +33,19 @@ Game.prototype.draw = function(context){
 
     context.fillStyle = 'gray';
     context.fillRect(0,0,this.DIM_X,this.DIM_Y);
-
-
+    // this.drawBackground(context);
+    
     this.allObjects().forEach( (obj) => obj.draw(context) );
 }
+
+Game.prototype.drawBackground = function(ctx) {
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src ||= 'grass_background.png';
+  }
+  
 
 Game.prototype.moveObjects = function(){
     this.allObjects().forEach(element => {

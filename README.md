@@ -34,6 +34,7 @@ beaver: remove a water obstacle
 
 Credits
 Ayce, Kin, Peter, and Spencer
+keymaster.js
 https://www.favicon.cc/?action=icon&file_id=968880
 https://fonts.google.com/noto/specimen/Noto+Color+Emoji
 https://cainos.itch.io/pixel-art-top-down-basic
