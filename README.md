@@ -31,3 +31,9 @@ lizard: shortens your snake by removing tail
 snail: temporarily slow down snake
 turtle: grants a one time shield to prevent damage\
 beaver: remove a water obstacle
+
+Credits
+Ayce, Kin, Peter, and Spencer
+https://www.favicon.cc/?action=icon&file_id=968880
+https://fonts.google.com/noto/specimen/Noto+Color+Emoji
+https://cainos.itch.io/pixel-art-top-down-basic

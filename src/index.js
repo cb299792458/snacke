@@ -2,7 +2,6 @@ const Snake = require("./snake.js");
 const Game = require("./game.js")
 const GameView = require("./game_view.js")
 
-// window.snake = Snake;
 document.addEventListener("DOMContentLoaded", () => {
     const canvasEl = document.getElementById('game-canvas');
     const WIDTH = 1000;

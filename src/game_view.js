@@ -14,6 +14,12 @@ GameView.prototype.start = function(){
     const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx),30);
     const stepInt = setInterval(that.game.step.bind(that.game),30);
     this.bindKeyHandlers();
+
+    const img = new Image();
+    img.onload = function() {
+        context.drawImage(img, 0, 0);
+    };
+    img.src = "grass_background.png";
 }
 
 

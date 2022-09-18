@@ -13,11 +13,7 @@ function Game(dimX,dimY){
 }
 
 Game.prototype.randomPos = function(rad){
-    // let pos=[0,0];
-    // while(Util.outOfBounds(pos,this,rad)){
-    let pos = [Math.random()*this.DIM_X,Math.random()*this.DIM_Y];
-    // }
-    return pos
+    return [Math.random()*this.DIM_X,Math.random()*this.DIM_Y];
 }
 
 Game.prototype.allObjects = function(){
@@ -26,14 +22,17 @@ Game.prototype.allObjects = function(){
 
 Game.prototype.makeSnack = function(){
     let newSnack = new Snack([0,0],"apple");
-    newSnack.pos = this.randomPos(newSnack.rad);
+    while( Util.outOfBounds(newSnack.pos,this,newSnack.radius) ){
+        newSnack.pos = this.randomPos(newSnack.rad);
+    }
     this.snacks.push( newSnack );
 }
 
 Game.prototype.draw = function(context){
-    // context.clearRect(0,0,this.DIM_X,this.DIM_Y);
+
     context.fillStyle = 'gray';
     context.fillRect(0,0,this.DIM_X,this.DIM_Y);
+
 
     this.allObjects().forEach( (obj) => obj.draw(context) );
 }
