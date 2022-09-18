@@ -9,7 +9,7 @@ function Snake(game){
     
     this.pos = [this.game.DIM_X/2,this.game.DIM_Y-this.headRadius];
     this.vel = [0,-1];
-    this.speed = 8;
+    this.speed = 10;
     this.body = [];
     this.maxLength = 100;
 }

@@ -10,3 +10,24 @@ The game will be hosted online using Rails, with an instruction and high score p
 Thanks to all of these games and their creators for inspiration: Snake, Slither.io, Slay the Spire, One Step from Eden, Peglin, Roundguard, SNKRX, Crypt of the Necrodancer, Super Auto Pets, Unrailed, Enter the Gungeon, and many more.
 
 No thanks to League of Legends for being a cesspool of toxicity and frustration, and causing generations of gamers to hemorrhage time and money into a bottomless pit of pain and despair.
+
+List of Snack Powers:
+PASSIVE
+rat: lets more snacks spawn at a time
+fish: allows movement through water
+cat: grants an extra life
+squirrel: allows adding a snack to menu
+raccoon: allows removing a snack from menu
+pig: expands stomach to hold more snacks
+rabbit: snack powers activate with fewer animals
+monkey: activacte abilities more easily
+goat: grants bonus points
+
+
+ACTIVE
+frog: extends tongue to eat food at long range
+mole: burrows underground, invincible but cannot eat/turn
+lizard: shortens your snake by removing tail
+snail: temporarily slow down snake
+turtle: grants a one time shield to prevent damage\
+beaver: remove a water obstacle
