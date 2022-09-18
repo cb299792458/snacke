@@ -3,7 +3,7 @@ const Util = require("./util.js");
 
 function Snake(game){
     this.game = game;
-    this.headRadius = 10;
+    this.headRadius = 20;
     this.color = '#0BDA51';
     
     this.pos = [this.game.DIM_X/2,this.game.DIM_Y-this.headRadius];

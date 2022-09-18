@@ -2,7 +2,7 @@ function Snack(pos,type){
     this.pos = pos;
     this.type = type;
     this.color = 'red'
-    this.radius = 15;
+    this.radius = 30;
     this.img = new Image();
     this.img.src = `./emojis/${type}.png`;
 }

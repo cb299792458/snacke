@@ -11,8 +11,8 @@ function GameView(game,ctx){
 
 GameView.prototype.start = function(){
     let that = this;
-    const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx),30);
-    const stepInt = setInterval(that.game.step.bind(that.game),30);
+    const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx),20);
+    const stepInt = setInterval(that.game.step.bind(that.game),20);
     this.bindKeyHandlers();
 }
 
