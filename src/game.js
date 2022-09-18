@@ -13,7 +13,11 @@ function Game(dimX,dimY){
 }
 
 Game.prototype.randomPos = function(){
-    return[Math.random()*this.DIM_X,Math.random()*this.DIM_Y]
+    let pos=[0,0];
+    while(Util.outOfBounds(pos,this,10)){
+        pos = [Math.random()*this.DIM_X,Math.random()*this.DIM_Y]
+    }
+    return pos
 }
 
 Game.prototype.allObjects = function(){

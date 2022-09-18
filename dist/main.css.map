@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","mappings":"AAAA,GACI,aACA,uB","sources":["webpack://snacke/./src/index.scss"],"sourcesContent":["h1 {\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n"],"names":[],"sourceRoot":""}

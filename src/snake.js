@@ -4,12 +4,11 @@ const Util = require("./util.js");
 function Snake(game){
     this.game = game;
     this.headRadius = 10;
-    // this.color = 'green';
     this.color = '#0BDA51';
     
     this.pos = [this.game.DIM_X/2,this.game.DIM_Y-this.headRadius];
     this.vel = [0,-1];
-    this.speed = 10;
+    this.speed = 8;
     this.body = [];
     this.maxLength = 100;
 }
@@ -81,13 +80,14 @@ Snake.prototype.turn = function(newVel){
 }
 
 Snake.prototype.outOfBounds = function(){
-    if(this.pos[0]<this.headRadius ||
-        this.pos[1]<this.headRadius ||
-        this.pos[0]>this.game.DIM_X-this.headRadius ||
-        this.pos[1]>this.game.DIM_Y-this.headRadius){
-            return true;
-        }
-    return false;
+    // if(this.pos[0]<this.headRadius ||
+    //     this.pos[1]<this.headRadius ||
+    //     this.pos[0]>this.game.DIM_X-this.headRadius ||
+    //     this.pos[1]>this.game.DIM_Y-this.headRadius){
+    //         return true;
+    //     }
+    // return false;
+    return Util.outOfBounds(this.pos,this.game,this.headRadius)
 }
 
 Snake.prototype.selfBite = function(){

@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "This is my roguelike/deckbuilding/snake game.",
   "main": "index.js",
-
   "browserslist": [
     "defaults"
   ],
-
   "scripts": {
     "watch": "webpack --watch --mode=development",
-    "build": "webpack --mode=production"  
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -31,9 +29,12 @@
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.1",
     "regenerator-runtime": "^0.13.9",
+    "resolve-cwd": "^3.0.0",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
-    "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0"
   }
 }

@@ -23,6 +23,16 @@ const Util = {
     
     direction(vel){
         return Math.atan2(vel[1],vel[0]);
+    },
+
+    outOfBounds(pos,game,rad){
+        if(pos[0]<rad ||
+            pos[1]<rad ||
+            pos[0]>game.DIM_X-rad ||
+            pos[1]>game.DIM_Y-rad){
+                return true;
+            }
+        return false;
     }
 };
 
