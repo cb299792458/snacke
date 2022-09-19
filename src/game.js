@@ -21,8 +21,14 @@ function Game(dimX,dimY){
     this.img = new Image();
     this.img.src = "grass_background.png";
     this.menu = ANIMALS.slice(); //make a default menu
+    this.paused = false;
+    this.message = ""
+    this.topLogs = [];
+    this.bottomLogs = [];
 
-    new Level(this,1);
+    new Level(this,this.level);
+    this.makeSnack();
+    this.makeSnack();
     this.makeSnack();
 }
 
@@ -44,14 +50,30 @@ Game.prototype.makeSnack = function(){
 }
 
 Game.prototype.makeObstacle = function(pos,type){
-    this.obstacles.push( new Obstacle( pos, type ));
+    if(type!="log"){
+        this.obstacles.push( new Obstacle( pos, type ));
+    } else if(pos[1]<this.DIM_Y/2){
+        this.topLogs.push( new Obstacle( pos, type ));
+    } else {
+        this.bottomLogs.push( new Obstacle( pos, type ));
+    }
 }
 
 Game.prototype.draw = function(context,info){
     context.drawImage(this.img,0,0);
     this.allObjects().forEach( (obj) => obj.draw(context) );
+    if(this.snake.maxLength < 200){
+        this.topLogs.forEach( (obj) => obj.draw(context) );
+    }
 
     this.drawInfo(info);
+    if(this.paused || this.over){
+        context.textAlign = "center";
+        context.fillStyle = "white";
+        if(this.over){ context.fillStyle = "red"; }
+        context.font = "96px serif";
+        context.fillText(this.message,this.DIM_X/2,this.DIM_Y/2);
+    }
 }
 
 Game.prototype.drawInfo = function(info){
@@ -93,41 +115,52 @@ Game.prototype.setIcons = function(){
 }
 
 Game.prototype.moveObjects = function(){
-    // this.allObjects().forEach(element => {
-    //     element.move();
-    // });
     this.snake.move();
 }
 
 Game.prototype.step = function(){
-    if(!this.over){
+    if(!this.over && !this.paused){
         this.moveObjects();
         this.checkCollisions();
     }
 }
 
 Game.prototype.checkCollisions = function(){
-    if(this.snake.outOfBounds()){
-        this.over = true;
+    let snake = this.snake;
+    let game = this;
+    if(snake.outOfBounds()){
+        snake.hurt();
     }
-    if(this.snake.selfBite()){
-        this.over = true;
+    if(snake.selfBite()){
+        this.lives--;
+        snake.hurt();
     }
 
     // Check for eating
-    let snake = this.snake;
-    let game = this;
     this.snacks.forEach( function(snack){
         if(Util.hypotenuse(snack.pos,snake.pos)<snake.headRadius+snack.radius){
             snake.eat(snack);
             game.makeSnack();
         }
     });
+
+    // Check for obstacles
+    this.obstacles.forEach( function(obstacle){
+        if(Util.hypotenuse(obstacle.pos,snake.pos)<snake.headRadius){
+            snake.hurt();
+        }
+    })
 }
 
 Game.prototype.destroy = function(obj){
-    // This should find the object and remove it from the array
-    this.snacks = [];
+    this.snacks.splice(this.snacks.indexOf(obj),1);
+}
+
+Game.prototype.pause = function(){
+    if(!this.paused){
+        this.paused = true;
+        this.message = "GAME PAUSED";
+    } else { this.paused = false}
 }
 
 module.exports = Game;

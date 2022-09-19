@@ -13,6 +13,7 @@ function Snake(game){
     this.maxLength = 100;
     this.stomach = [];
     this.stomachSize = 9;
+    this.invincible = false;
 }
 
 Snake.prototype.move = function(){
@@ -27,7 +28,13 @@ Snake.prototype.draw = function(ctx){
     let angle = Util.direction(this.vel); 
     
     // Draw snake's head
-    ctx.fillStyle = this.color;
+    if(this.invincible && Math.random() > 0.5){
+        ctx.fillStyle = 'orange';
+    } else {
+        ctx.fillStyle = this.color;
+    }
+
+
     ctx.beginPath();
     ctx.arc(this.pos[0],this.pos[1],this.headRadius, angle+.3, angle + 3.5, false);
     ctx.closePath();
@@ -110,6 +117,19 @@ Snake.prototype.stomachContains = function(animal,num){
         if(animal===element){count++;}
     });
     return count>=num;
+}
+
+Snake.prototype.hurt = function(){
+    if(!this.invincible){
+        this.game.lives--;
+        this.invincible = true;
+        let that = this;
+        setTimeout( function(){ that.invincible = false;}, 1500)
+    }
+    if(this.game.lives <= 0){
+        this.game.over = true;
+        this.game.message = "YOU DIED"
+    }
 }
 
 module.exports = Snake;
