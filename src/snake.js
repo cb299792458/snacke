@@ -82,13 +82,6 @@ Snake.prototype.turn = function(newVel){
 }
 
 Snake.prototype.outOfBounds = function(){
-    // if(this.pos[0]<this.headRadius ||
-    //     this.pos[1]<this.headRadius ||
-    //     this.pos[0]>this.game.DIM_X-this.headRadius ||
-    //     this.pos[1]>this.game.DIM_Y-this.headRadius){
-    //         return true;
-    //     }
-    // return false;
     return Util.outOfBounds(this.pos,this.game,this.headRadius)
 }
 

@@ -1,9 +1,10 @@
 const Game = require("./game.js");
 const Snake = require("./snake.js");
 
-function GameView(game,ctx){
+function GameView(game,ctx,info){
     this.game = game;
     this.ctx = ctx;
+    this.info = info;
     this.snake;
     const boundDraw = this.game.draw.bind(this.game)
 
@@ -11,7 +12,7 @@ function GameView(game,ctx){
 
 GameView.prototype.start = function(){
     let that = this;
-    const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx),20);
+    const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx,that.info),20);
     const stepInt = setInterval(that.game.step.bind(that.game),20);
     this.bindKeyHandlers();
 }

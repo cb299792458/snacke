@@ -11,9 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const ctx = canvasEl.getContext('2d');
 
+    const canvasInfo = document.getElementById('info-canvas');
+    canvasInfo.width = 400;
+    canvasInfo.height = HEIGHT;
+    const info = canvasInfo.getContext('2d');
 
     let game = new Game(WIDTH,HEIGHT);
-    let gv = new GameView(game,ctx);
+    let gv = new GameView(game,ctx,info);
     gv.start();
     
 })

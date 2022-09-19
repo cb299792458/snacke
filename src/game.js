@@ -15,7 +15,8 @@ const ANIMALS = [
     "rat",
     "snail",
     "squirrel",
-    "turtle"
+    "turtle",
+    "snake"
 ]
 
 function Game(dimX,dimY){
@@ -23,6 +24,7 @@ function Game(dimX,dimY){
     this.DIM_Y = dimY;
     this.snake = new Snake(this);
     this.snacks = [];
+    this.lives = 3;
     this.over = false;
 
     this.menu = ANIMALS; //make a default menu
@@ -48,10 +50,47 @@ Game.prototype.makeSnack = function(){
     this.snacks.push( newSnack );
 }
 
-Game.prototype.draw = function(context){
-
-    context.drawImage(this.img,0,0)
+Game.prototype.draw = function(context,info){
+    context.drawImage(this.img,0,0);
     this.allObjects().forEach( (obj) => obj.draw(context) );
+
+    this.drawInfo(info);
+}
+
+Game.prototype.drawInfo = function(info){
+    const icons = this.setIcons();
+    info.fillStyle = 'gray';
+    info.fillRect(0,0,400,600);
+    info.fillStyle = 'black';
+    info.font = '24px serif';
+    info.fillText('Lives:', 10, 25);
+    for(let i=0;i<this.lives;i++){
+        info.drawImage(icons["snake"],70+(35*i),2.5,30,30);
+    }
+    info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 50);
+    info.fillText('Menu:', 10, 75);
+    for(let i=0;i<this.menu.length && i <9;i++){
+        info.drawImage(icons[this.menu[i]],75+(35*i),52.5,30,30);
+    }
+    for(let i=9;i<this.menu.length && i<16;i++){
+        info.drawImage(icons[this.menu[i]],75+(35*(i-9)),82.5,30,30);
+    }
+    info.fillText(`Stomach:`, 10, 145);
+    for(let i=0;i<this.snake.stomach.length && i <8;i++){
+        info.drawImage(icons[this.snake.stomach[i]],100+(35*i),122.5,30,30);
+    }
+    for(let i=8;i<this.snake.stomach.length && i<16;i++){
+        info.drawImage(icons[this.snake.stomach[i]],100+(35*(i-8)),152.5,30,30);
+    }
+}
+
+Game.prototype.setIcons = function(){
+    let icons = {}
+    ANIMALS.forEach( function(animal) {
+        icons[animal] = new Image();
+        icons[animal].src = `./emojis/${animal}.png`;
+    });
+    return icons;
 }
 
 Game.prototype.moveObjects = function(){
