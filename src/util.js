@@ -1,10 +1,10 @@
 const Util = {
-    inherits(childClass, parentClass) {
-        function Surrogate() {}
-        Surrogate.prototype = parentClass.prototype;
-        childClass.prototype = new Surrogate();
-        childClass.prototype.constructor = childClass;
-    },
+    // inherits(childClass, parentClass) {
+    //     function Surrogate() {}
+    //     Surrogate.prototype = parentClass.prototype;
+    //     childClass.prototype = new Surrogate();
+    //     childClass.prototype.constructor = childClass;
+    // },
 
     // randomVec(length) {
     //     const deg = 2 * Math.PI * Math.random();

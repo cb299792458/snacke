@@ -102,7 +102,14 @@ Snake.prototype.eat = function(snack){
     this.stomach.unshift(snack.type);
     if(this.stomach.length>this.stomachSize){this.stomach.pop()};
     this.game.destroy(snack);
-    console.log(this.stomach)
+}
+
+Snake.prototype.stomachContains = function(animal,num){
+    let count = 0;
+    this.stomach.forEach( function(element){
+        if(animal===element){count++;}
+    });
+    return count>=num;
 }
 
 module.exports = Snake;
