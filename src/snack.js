@@ -8,9 +8,10 @@ function Snack(pos,type){
 }
 
 Snack.prototype.draw = function(ctx){
-
-    ctx.drawImage(this.img,this.pos[0]-this.radius,this.pos[1]-this.radius,this.radius*2,this.radius*2);
-
+    ctx.drawImage(this.img,
+        this.pos[0]-this.radius,
+        this.pos[1]-this.radius,
+        this.radius*2,this.radius*2);
 }
 
 Snack.prototype.move = function(){}

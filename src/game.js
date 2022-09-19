@@ -1,36 +1,29 @@
 const Snake = require("./snake.js")
 const Snack = require("./snack.js")
-const Util = require("./util.js")
+const Util = require("./util.js");
+const Obstacle = require("./obstacle.js");
+const Level = require("./levels.js");
 const ANIMALS = [
-    "beaver",
-    "cat",
-    "dog",
-    "fish",
-    "frog",
-    "lizard",
-    "monkey",
-    "pig",
-    "rabbit",
-    "raccoon",
-    "rat",
-    "snail",
-    "squirrel",
-    "turtle",
-    "snake"
-]
+    "beaver","cat","dog","fish","frog","lizard","monkey","pig",
+    "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
+];
+const OBSTACLES = ["fire","ice","log","rock","water"];
 
 function Game(dimX,dimY){
     this.DIM_X = dimX;
     this.DIM_Y = dimY;
     this.snake = new Snake(this);
     this.snacks = [];
+    this.obstacles = [];
     this.lives = 3;
+    this.level = 1;
     this.over = false;
-
-    this.menu = ANIMALS; //make a default menu
-    this.makeSnack();
     this.img = new Image();
     this.img.src = "grass_background.png";
+    this.menu = ANIMALS.slice(); //make a default menu
+
+    new Level(this,1);
+    this.makeSnack();
 }
 
 Game.prototype.randomPos = function(rad){
@@ -38,7 +31,7 @@ Game.prototype.randomPos = function(rad){
 }
 
 Game.prototype.allObjects = function(){
-    return [this.snake].concat(this.snacks);
+    return [this.snake].concat(this.snacks).concat(this.obstacles);
 }
 
 Game.prototype.makeSnack = function(){
@@ -48,6 +41,10 @@ Game.prototype.makeSnack = function(){
         newSnack.pos = this.randomPos(newSnack.rad);
     }
     this.snacks.push( newSnack );
+}
+
+Game.prototype.makeObstacle = function(pos,type){
+    this.obstacles.push( new Obstacle( pos, type ));
 }
 
 Game.prototype.draw = function(context,info){
@@ -82,6 +79,8 @@ Game.prototype.drawInfo = function(info){
     for(let i=8;i<this.snake.stomach.length && i<16;i++){
         info.drawImage(icons[this.snake.stomach[i]],100+(35*(i-8)),152.5,30,30);
     }
+    info.fillText(`Powers:`, 10, 215);
+
 }
 
 Game.prototype.setIcons = function(){
@@ -94,9 +93,10 @@ Game.prototype.setIcons = function(){
 }
 
 Game.prototype.moveObjects = function(){
-    this.allObjects().forEach(element => {
-        element.move();
-    });
+    // this.allObjects().forEach(element => {
+    //     element.move();
+    // });
+    this.snake.move();
 }
 
 Game.prototype.step = function(){
