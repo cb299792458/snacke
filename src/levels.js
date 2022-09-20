@@ -23,6 +23,7 @@ function Level(game, num){
             obstacles["water"].push([game.DIM_X/2,game.DIM_Y/2]);
             break;
         case 2:
+            obstacles["fire"].push([game.DIM_X/2,game.DIM_Y/2]);
             break;
     }
 

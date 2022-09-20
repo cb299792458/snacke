@@ -6,7 +6,11 @@ function Snake(game){
     this.headRadius = 20;
     this.color = '#0BDA51';
     
-    this.pos = [this.game.DIM_X/2,this.game.DIM_Y-this.headRadius];
+    this.reset();
+}
+
+Snake.prototype.reset = function(){
+    this.pos = [this.game.DIM_X/2,this.game.DIM_Y-50];
     this.vel = [0,-1];
     this.speed = 8;
     this.body = [];
@@ -130,6 +134,13 @@ Snake.prototype.hurt = function(){
         this.game.over = true;
         this.game.message = "YOU DIED"
     }
+}
+
+Snake.prototype.nextLevel = function(){
+    return this.maxLength > this.game.winLength &&
+    this.pos[0] > this.game.DIM_X/2-50 &&
+    this.pos[0] < this.game.DIM_X/2+50 &&
+    this.pos[1] < 50;
 }
 
 module.exports = Snake;

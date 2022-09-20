@@ -12,11 +12,10 @@ const OBSTACLES = ["fire","ice","log","rock","water"];
 function Game(dimX,dimY){
     this.DIM_X = dimX;
     this.DIM_Y = dimY;
-    this.snake = new Snake(this);
     this.snacks = [];
     this.obstacles = [];
     this.lives = 3;
-    this.level = 1;
+    this.level = 0;
     this.over = false;
     this.img = new Image();
     this.img.src = "grass_background.png";
@@ -25,11 +24,11 @@ function Game(dimX,dimY){
     this.message = ""
     this.topLogs = [];
     this.bottomLogs = [];
+    this.maxSnacks = 3;
+    this.winLength = 200;
+    this.snake = new Snake(this);
 
-    new Level(this,this.level);
-    this.makeSnack();
-    this.makeSnack();
-    this.makeSnack();
+    this.startLevel();
 }
 
 Game.prototype.randomPos = function(rad){
@@ -38,6 +37,18 @@ Game.prototype.randomPos = function(rad){
 
 Game.prototype.allObjects = function(){
     return [this.snake].concat(this.snacks).concat(this.obstacles);
+}
+
+Game.prototype.startLevel = function(){
+    this.snacks = [];
+    this.obstacles = [];
+    this.topLogs = [];
+    this.bottomLogs = [];
+    this.level++;
+    while(this.snacks.length<this.maxSnacks){this.makeSnack()}
+
+    new Level(this,this.level);
+    this.snake.reset();
 }
 
 Game.prototype.makeSnack = function(){
@@ -62,7 +73,7 @@ Game.prototype.makeObstacle = function(pos,type){
 Game.prototype.draw = function(context,info){
     context.drawImage(this.img,0,0);
     this.allObjects().forEach( (obj) => obj.draw(context) );
-    if(this.snake.maxLength < 200){
+    if(this.snake.maxLength < this.winLength){
         this.topLogs.forEach( (obj) => obj.draw(context) );
     }
 
@@ -86,7 +97,6 @@ Game.prototype.drawInfo = function(info){
     for(let i=0;i<this.lives;i++){
         info.drawImage(icons["snake"],70+(35*i),2.5,30,30);
     }
-    info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 50);
     info.fillText('Menu:', 10, 75);
     for(let i=0;i<this.menu.length && i <9;i++){
         info.drawImage(icons[this.menu[i]],75+(35*i),52.5,30,30);
@@ -102,6 +112,8 @@ Game.prototype.drawInfo = function(info){
         info.drawImage(icons[this.snake.stomach[i]],100+(35*(i-8)),152.5,30,30);
     }
     info.fillText(`Powers:`, 10, 215);
+    info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 265);
+    info.fillText(`Level: ${this.level}`, 10, 315);
 
 }
 
@@ -128,6 +140,11 @@ Game.prototype.step = function(){
 Game.prototype.checkCollisions = function(){
     let snake = this.snake;
     let game = this;
+    if(snake.nextLevel()){
+        console.log('check')
+
+        this.startLevel();
+        }
     if(snake.outOfBounds()){
         snake.hurt();
     }
