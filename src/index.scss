@@ -5,20 +5,28 @@ body {
 .header {
     display: flex;
     justify-content: center;
+    // border: solid yellow 1px;
+}
+
+
+.links {
+    position: absolute;
+    right: 0px;
 }
 
 .container {
-    border: solid black 1px;
+    // border: solid black 1px;
     display: flex;
     justify-content: center;
 }
 
 .game {
     justify-self: center;
-    border: solid blue 1px;
+    // border: solid blue 1px;
 }
+
 .info {
     justify-self: center;
-    border: solid red 1px;
+    // border: solid red 1px;
 }
 

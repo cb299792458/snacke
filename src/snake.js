@@ -166,11 +166,11 @@ Snake.prototype.hit = function(obstacle){
             }
             this.tornadoProof = true;
             let that = this;
+            clearTimeout(this.tornadoTime);
+            this.tornadoTime = setTimeout( () => {
+                that.tornadoProof = false;
+            }, 800);
         }
-        clearTimeout(this.tornadoTime);
-        this.tornadoTime = setTimeout( () => {
-            that.tornadoProof = false;
-        }, 100);
     }
 }
 

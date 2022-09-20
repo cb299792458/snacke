@@ -18,7 +18,7 @@ function Game(dimX,dimY){
     this.level = 0;
     this.over = false;
     this.img = new Image();
-    this.img.src = "grass_background.png";
+    this.img.src = "grass.jpg";
     this.menu = ANIMALS.slice(0,14); //make a default menu
     this.paused = false;
     this.message = ""

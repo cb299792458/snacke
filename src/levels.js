@@ -38,6 +38,19 @@ function Level(game, num){
                 obstacles["water"].push([275,i]);
                 obstacles["water"].push([game.DIM_X-275,i]);
             }
+            break;
+        case 4:
+            for(let i=(game.DIM_X/2)-200;i<=(game.DIM_X/2)+200;i+=25){
+                obstacles["water"].push([i,game.DIM_Y/2]);
+            }
+            for(let i=25; i<(game.DIM_X/2)-200; i+=25){
+                obstacles["tornado"].push([i,i]);
+                obstacles["tornado"].push([game.DIM_X-i,i]);
+                obstacles["tornado"].push([i,game.DIM_Y-i]);
+                obstacles["tornado"].push([game.DIM_X-i,game.DIM_Y-i]);
+            }
+            break;
+
     }
 
     OBSTACLES.forEach( function(ele){
