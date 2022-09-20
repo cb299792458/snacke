@@ -5,7 +5,6 @@ function Snake(game){
     this.game = game;
     this.headRadius = 20;
     this.color = '#0BDA51';
-    
     this.reset();
 }
 
@@ -18,12 +17,11 @@ Snake.prototype.reset = function(){
     this.stomach = [];
     this.stomachSize = 9;
     this.invincible = false;
-    this.frozen = false;
 }
 
 Snake.prototype.move = function(){
     this.body.unshift(this.pos.slice())
-    if(this.body.length>this.maxLength){this.body.pop()}
+    if(this.body.length>=this.maxLength){this.body.pop()}
     this.pos[0] += this.speed * this.vel[0];
     this.pos[1] += this.speed * this.vel[1];
 }
@@ -140,7 +138,7 @@ Snake.prototype.hurt = function(){
 }
 
 Snake.prototype.nextLevel = function(){
-    return this.maxLength > this.game.winLength &&
+    return this.maxLength >= this.game.winLength &&
     this.pos[0] > this.game.DIM_X/2-50 &&
     this.pos[0] < this.game.DIM_X/2+50 &&
     this.pos[1] < 20;
@@ -153,9 +151,26 @@ Snake.prototype.hit = function(obstacle){
     if(obstacle.type==="ice"){
         this.frozen = true;
         let that = this;
-        setTimeout( () => {
+        clearTimeout(this.frozenTime);
+        this.frozenTime = setTimeout( () => {
             that.frozen = false;
-        }, 1000);
+        }, 100);
+    }
+    if(obstacle.type==="tornado"){
+        const vels = [[1,0],[-1,0],[0,1],[0,-1]]
+        if(!this.tornadoProof){
+            if(this.vel[0]===0){
+                this.vel = vels[Math.floor(2*Math.random())];
+            } else if(this.vel[1]===0){
+                this.vel = vels[Math.floor(2+2*Math.random())];
+            }
+            this.tornadoProof = true;
+            let that = this;
+        }
+        clearTimeout(this.tornadoTime);
+        this.tornadoTime = setTimeout( () => {
+            that.tornadoProof = false;
+        }, 100);
     }
 }
 

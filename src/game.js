@@ -19,7 +19,7 @@ function Game(dimX,dimY){
     this.over = false;
     this.img = new Image();
     this.img.src = "grass_background.png";
-    this.menu = ANIMALS.slice(); //make a default menu
+    this.menu = ANIMALS.slice(0,14); //make a default menu
     this.paused = false;
     this.message = ""
     this.topLogs = [];
@@ -36,7 +36,7 @@ Game.prototype.randomPos = function(rad){
 }
 
 Game.prototype.allObjects = function(){
-    return [this.snake].concat(this.snacks).concat(this.obstacles);
+    return this.obstacles.concat([this.snake]).concat(this.snacks);
 }
 
 Game.prototype.startLevel = function(){
@@ -149,6 +149,7 @@ Game.prototype.checkCollisions = function(){
     let game = this;
     if(snake.nextLevel()){
         this.startLevel();
+        return;
         }
     if(snake.outOfBounds()){
         snake.hurt();
@@ -168,7 +169,7 @@ Game.prototype.checkCollisions = function(){
 
     // Check for obstacles
     this.obstacles.forEach( function(obstacle){
-        if(Util.hypotenuse(obstacle.pos,snake.pos)<snake.headRadius){
+        if(Util.hypotenuse(obstacle.pos,snake.pos)<snake.headRadius+obstacle.radius/2){
             snake.hit(obstacle);
         }
     })

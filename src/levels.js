@@ -28,6 +28,16 @@ function Level(game, num){
             obstacles["ice"].push([3*game.DIM_X/4,game.DIM_Y/4]);
             obstacles["tornado"].push([game.DIM_X/4,3*game.DIM_Y/4]);
             break;
+        case 3:
+            for(let i=150;i<=game.DIM_Y-150;i+=25){
+                for(let j=300; j<=game.DIM_X-300; j+=25){
+                    obstacles["ice"].push([j,i]);
+                }
+                obstacles["fire"].push([100,i]);
+                obstacles["fire"].push([game.DIM_X-100,i]);
+                obstacles["water"].push([275,i]);
+                obstacles["water"].push([game.DIM_X-275,i]);
+            }
     }
 
     OBSTACLES.forEach( function(ele){
