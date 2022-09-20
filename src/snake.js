@@ -14,7 +14,7 @@ Snake.prototype.reset = function(){
     this.vel = [0,-1];
     this.speed = 8;
     this.body = [];
-    this.maxLength = 100;
+    this.maxLength = 40;
     this.stomach = [];
     this.stomachSize = 9;
     this.invincible = false;
@@ -140,7 +140,7 @@ Snake.prototype.nextLevel = function(){
     return this.maxLength > this.game.winLength &&
     this.pos[0] > this.game.DIM_X/2-50 &&
     this.pos[0] < this.game.DIM_X/2+50 &&
-    this.pos[1] < 50;
+    this.pos[1] < 20;
 }
 
 module.exports = Snake;

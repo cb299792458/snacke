@@ -49,6 +49,10 @@ Game.prototype.startLevel = function(){
 
     new Level(this,this.level);
     this.snake.reset();
+
+    this.drawBottomLogs = false;
+    let that = this;
+    setInterval( () => that.drawBottomLogs = true, 1500);
 }
 
 Game.prototype.makeSnack = function(){
@@ -75,6 +79,9 @@ Game.prototype.draw = function(context,info){
     this.allObjects().forEach( (obj) => obj.draw(context) );
     if(this.snake.maxLength < this.winLength){
         this.topLogs.forEach( (obj) => obj.draw(context) );
+    }
+    if(this.drawBottomLogs){
+        this.bottomLogs.forEach( (obj) => obj.draw(context) );
     }
 
     this.drawInfo(info);
