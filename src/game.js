@@ -141,8 +141,6 @@ Game.prototype.checkCollisions = function(){
     let snake = this.snake;
     let game = this;
     if(snake.nextLevel()){
-        console.log('check')
-
         this.startLevel();
         }
     if(snake.outOfBounds()){
