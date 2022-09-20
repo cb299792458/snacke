@@ -1,5 +1,5 @@
 function Level(game, num){
-    const OBSTACLES = ["fire","ice","log","rock","water"];
+    const OBSTACLES = ["fire","ice","log","rock","water","tornado"];
     const obstacles = {};
     OBSTACLES.forEach( ele => obstacles[ele] = [] );
 
@@ -23,7 +23,10 @@ function Level(game, num){
             obstacles["water"].push([game.DIM_X/2,game.DIM_Y/2]);
             break;
         case 2:
-            obstacles["fire"].push([game.DIM_X/2,game.DIM_Y/2]);
+            obstacles["fire"].push([game.DIM_X/4,game.DIM_Y/4]);
+            obstacles["water"].push([3*game.DIM_X/4,3*game.DIM_Y/4]);
+            obstacles["ice"].push([3*game.DIM_X/4,game.DIM_Y/4]);
+            obstacles["tornado"].push([game.DIM_X/4,3*game.DIM_Y/4]);
             break;
     }
 

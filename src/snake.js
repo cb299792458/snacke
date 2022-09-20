@@ -18,6 +18,7 @@ Snake.prototype.reset = function(){
     this.stomach = [];
     this.stomachSize = 9;
     this.invincible = false;
+    this.frozen = false;
 }
 
 Snake.prototype.move = function(){
@@ -34,7 +35,9 @@ Snake.prototype.draw = function(ctx){
     // Draw snake's head
     if(this.invincible && Math.random() > 0.5){
         ctx.fillStyle = 'orange';
-    } else {
+    } else if(this.frozen){
+        ctx.fillStyle = '#ADD8E6';
+    } else{
         ctx.fillStyle = this.color;
     }
 
@@ -88,7 +91,7 @@ Snake.prototype.draw = function(ctx){
 
 Snake.prototype.turn = function(newVel){
     if(JSON.stringify(Util.scale(newVel,-1)) != JSON.stringify(this.vel)){
-        this.vel = newVel;
+        if(!this.frozen){this.vel = newVel;}
     }
 }
 
@@ -141,6 +144,19 @@ Snake.prototype.nextLevel = function(){
     this.pos[0] > this.game.DIM_X/2-50 &&
     this.pos[0] < this.game.DIM_X/2+50 &&
     this.pos[1] < 20;
+}
+
+Snake.prototype.hit = function(obstacle){
+    if(obstacle.type==="water"||obstacle.type==="fire"){
+        this.hurt();
+    }
+    if(obstacle.type==="ice"){
+        this.frozen = true;
+        let that = this;
+        setTimeout( () => {
+            that.frozen = false;
+        }, 1000);
+    }
 }
 
 module.exports = Snake;

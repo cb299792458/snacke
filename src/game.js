@@ -7,14 +7,14 @@ const ANIMALS = [
     "beaver","cat","dog","fish","frog","lizard","monkey","pig",
     "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
 ];
-const OBSTACLES = ["fire","ice","log","rock","water"];
+const OBSTACLES = ["fire","ice","log","rock","water","tornado"];
 
 function Game(dimX,dimY){
     this.DIM_X = dimX;
     this.DIM_Y = dimY;
     this.snacks = [];
     this.obstacles = [];
-    this.lives = 3;
+    this.lives = 5;
     this.level = 0;
     this.over = false;
     this.img = new Image();
@@ -25,7 +25,7 @@ function Game(dimX,dimY){
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
-    this.winLength = 200;
+    this.winLength = 100;
     this.snake = new Snake(this);
 
     this.startLevel();
@@ -169,7 +169,7 @@ Game.prototype.checkCollisions = function(){
     // Check for obstacles
     this.obstacles.forEach( function(obstacle){
         if(Util.hypotenuse(obstacle.pos,snake.pos)<snake.headRadius){
-            snake.hurt();
+            snake.hit(obstacle);
         }
     })
 }
