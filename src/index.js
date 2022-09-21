@@ -2,6 +2,14 @@ const Snake = require("./snake.js");
 const Game = require("./game.js")
 const GameView = require("./game_view.js")
 
+window.addEventListener("keydown", (e) => { // Prevent Arrow Key Scroll
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)){
+        e.preventDefault();
+      }
+    },
+    false
+  );
+
 document.addEventListener("DOMContentLoaded", () => {
     const canvasEl = document.getElementById('game-canvas');
     const WIDTH = 1000;
