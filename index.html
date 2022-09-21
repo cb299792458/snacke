@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <link rel="shortcut icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet"> 
     <script src="./src/keymaster.js"></script>
     <script src="./dist/main.js"></script>
     <title>Snacke</title>
@@ -15,17 +16,23 @@
 
   <body>
     <div class="header">
+      <div class="lamb">
+        <img src="clear.png" alt="thanks for playing" height="100">
+        <img src="lamb.png" alt="thanks for playing" height="100">
+      </div>
+
       <div class="logo">
         <img src="croppedlogo.jpg" alt="a game by me" height="100">
-
       </div>
+
       <div class="links">
-        <a class="link" href="https://github.com/cb299792458"><img src="github.png" alt="My GitHub" width="100" height="100"></a>
-        <a class="link" href="https://www.linkedin.com/in/brian-lam-962ba833/"><img src="linkedin.png" alt="My LinkedIn" width="120" height="100"></a>
+        <a href="https://github.com/cb299792458"><img src="github.png" alt="My GitHub" width="120" height="110"></a>
+        <a href="https://www.linkedin.com/in/brian-lam-962ba833/"><img src="linkedin.png" alt="My LinkedIn" width="130" height="110"></a>
       </div>
     </div>
 
     <div class="container">
+      <audio controls="controls" autoplay loop><source src="snakejazzremix.mp3" type="audio/mp3"></audio>
       <div class="game">
         <canvas id="game-canvas"></canvas>
       </div>
