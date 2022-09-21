@@ -5,6 +5,7 @@ function Snake(game){
     this.game = game;
     this.headRadius = 20;
     this.color = '#0BDA51';
+    this.sound = new Audio('nom.mp3');
     this.reset();
 }
 
@@ -110,6 +111,7 @@ Snake.prototype.selfBite = function(){
 }
 
 Snake.prototype.eat = function(snack){
+    this.sound.play();
     this.maxLength += 20;
     this.game.score += 100*this.game.level
     this.stomach.unshift(snack.type);

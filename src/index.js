@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     canvasInfo.height = HEIGHT;
     const info = canvasInfo.getContext('2d');
 
+    const bgm = document.getElementById("bgm");
+    bgm.volume = 0.2; 
+
     let game = new Game(WIDTH,HEIGHT);
     game.sendScore = sendScore;
     game.getScore = getScore;
