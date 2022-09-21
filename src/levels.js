@@ -50,7 +50,17 @@ function Level(game, num){
                 obstacles["tornado"].push([game.DIM_X-i,game.DIM_Y-i]);
             }
             break;
-
+        case 5:
+            for(let i=25;i<450;i+=25){
+                obstacles["fire"].push([i,i]);
+                obstacles["fire"].push([game.DIM_X-i,game.DIM_Y-i]);
+                obstacles["water"].push([game.DIM_X/2,game.DIM_Y/2]);
+                obstacles["water"].push([game.DIM_X/4,3*game.DIM_Y/4]);
+                obstacles["water"].push([3*game.DIM_X/4,game.DIM_Y/4]);
+                obstacles["water"].push([0.5*game.DIM_X/4,3*game.DIM_Y/4]);
+                obstacles["water"].push([3.5*game.DIM_X/4,game.DIM_Y/4]);
+            }
+            break;
     }
 
     OBSTACLES.forEach( function(ele){

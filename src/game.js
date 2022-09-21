@@ -28,7 +28,7 @@ function Game(dimX,dimY){
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
-    this.winLength = 100;
+    this.winLength = 200;
     this.score = 0;
     this.snake = new Snake(this);
     this.startLevel();
@@ -89,6 +89,7 @@ Game.prototype.draw = function(context,info){
     if(this.over==="no"){
         
         if(this.level===6){
+            this.score += 5000;
             this.over = "won";
             context.drawImage(this.win,0,0);
             this.end();
@@ -142,7 +143,7 @@ Game.prototype.drawInfo = function(info){
     for(let i=8;i<this.snake.stomach.length && i<16;i++){
         info.drawImage(icons[this.snake.stomach[i]],100+(35*(i-8)),152.5,30,30);
     }
-    info.fillText(`Powers:`, 10, 215);
+    info.fillText(`Powers: DLC coming soon!`, 10, 215);
     info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 265);
     info.fillText(`Level: ${this.level}`, 10, 315);
     info.fillText(`Score: ${this.score}`, 10, 355);
@@ -203,9 +204,6 @@ Game.prototype.destroy = function(obj){
 }
 
 Game.prototype.pause = function(){
-    // if(this.over === "died"){
-    //     this.gv.start();
-    // } else 
     if(!this.paused){
         this.paused = true;
         this.message = "GAME PAUSED";

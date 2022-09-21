@@ -35,19 +35,19 @@ audio {
 
 .game {
     justify-self: center;
-    border: solid blue 1px;
+    // border: solid blue 1px;
 }
 
 .info {
     position: absolute;
     right: 0px;
-    border: solid red 1px;
+    // border: solid red 1px;
 }
 
 .instructions {
     display: flex;
     flex-direction: column;
-    border: solid green 1px;
+    // border: solid green 1px;
     position: absolute;
     font-size: 24px;
     left: 0px;
