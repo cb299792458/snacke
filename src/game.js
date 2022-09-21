@@ -20,8 +20,8 @@ function Game(dimX,dimY){
     this.img = new Image();
     this.img.src = "grass.jpg";
     this.menu = ANIMALS.slice(0,14); //make a default menu
-    this.paused = false;
-    this.message = ""
+    this.paused = true;
+    this.message = "PRESS SPACE TO PLAY"
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;

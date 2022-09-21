@@ -1,45 +1,29 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-  body {
-    font-family: 'Caveat Brush', cursive;
-    background-color: #FEFEE2;
-    color: #83c27f;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .links {
-    position: absolute;
-    right: 0px;
-  }
-  
-  .lamb {
-    position: absolute;
-    left: 0px;
-  }
+body {
+  background-color: #FEFEE2;
+}
 
-  audio {
-    position: absolute;
-    left: 0px;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .game {
-    justify-self: center;
-  }
-  
-  .info {
-    justify-self: center;
-  }
-  
-  h1 {
-    text-align: center;
-  }
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.links {
+  position: absolute;
+  right: 0px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.game {
+  justify-self: center;
+}
+
+.info {
+  justify-self: center;
+}
