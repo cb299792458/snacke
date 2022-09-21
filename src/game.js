@@ -19,6 +19,8 @@ function Game(dimX,dimY){
     this.over = false;
     this.img = new Image();
     this.img.src = "grass.jpg";
+    this.win = new Image();
+    this.win.src = "win.png";
     this.menu = ANIMALS.slice(0,14); //make a default menu
     this.paused = true;
     this.message = "SPACE TO START"
@@ -46,6 +48,7 @@ Game.prototype.startLevel = function(){
     this.topLogs = [];
     this.bottomLogs = [];
     this.level++;
+
     while(this.snacks.length<this.maxSnacks){this.makeSnack()}
 
     new Level(this,this.level);
@@ -76,6 +79,13 @@ Game.prototype.makeObstacle = function(pos,type){
 }
 
 Game.prototype.draw = function(context,info){
+
+    if(this.level===6){
+        this.over = true;
+        context.drawImage(this.win,0,0);
+        return;
+    }
+
     context.drawImage(this.img,0,0);
     this.allObjects().forEach( (obj) => obj.draw(context) );
     if(this.snake.maxLength < this.winLength){
