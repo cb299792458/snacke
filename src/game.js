@@ -99,7 +99,7 @@ Game.prototype.drawInfo = function(info){
     info.fillStyle = 'gray';
     info.fillRect(0,0,400,600);
     info.fillStyle = 'black';
-    info.font = '24px serif';
+    info.font = '24px Caveat Brush';
     info.fillText('Lives:', 10, 25);
     for(let i=0;i<this.lives;i++){
         info.drawImage(icons["snake"],70+(35*i),2.5,30,30);
