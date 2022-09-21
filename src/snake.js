@@ -111,6 +111,7 @@ Snake.prototype.selfBite = function(){
 
 Snake.prototype.eat = function(snack){
     this.maxLength += 20;
+    this.game.score += 100*this.game.level
     this.stomach.unshift(snack.type);
     if(this.stomach.length>this.stomachSize){this.stomach.pop()};
     this.game.destroy(snack);

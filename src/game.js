@@ -21,11 +21,12 @@ function Game(dimX,dimY){
     this.img.src = "grass.jpg";
     this.menu = ANIMALS.slice(0,14); //make a default menu
     this.paused = true;
-    this.message = "PRESS SPACE TO PLAY"
+    this.message = "SPACE TO START"
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
     this.winLength = 100;
+    this.score = 0;
     this.snake = new Snake(this);
 
     this.startLevel();
@@ -121,6 +122,7 @@ Game.prototype.drawInfo = function(info){
     info.fillText(`Powers:`, 10, 215);
     info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 265);
     info.fillText(`Level: ${this.level}`, 10, 315);
+    info.fillText(`Score: ${this.score}`, 10, 365);
 
 }
 
