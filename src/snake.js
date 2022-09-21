@@ -69,7 +69,7 @@ Snake.prototype.draw = function(ctx){
         eyePos[0] += this.headRadius*this.vel[1]/2;// Offset eyes perpendicular
         eyePos[1] += this.headRadius*this.vel[0]/2;// to motion of snake.
     }
-    if(this.game.over){ // X-eyes
+    if(this.game.over === "died"){ // X-eyes
         ctx.beginPath();
         ctx.moveTo(eyePos[0]+5, eyePos[1]+5);
         ctx.lineTo(eyePos[0]-5, eyePos[1]-5);
@@ -125,15 +125,17 @@ Snake.prototype.stomachContains = function(animal,num){
     return count>=num;
 }
 
-Snake.prototype.hurt = function(){
+Snake.prototype.hurt = function(selfbit){
     if(!this.invincible){
+        if(selfbit){this.game.lives--;}
         this.game.lives--;
         this.invincible = true;
         let that = this;
         setTimeout( function(){ that.invincible = false;}, 1500)
     }
     if(this.game.lives <= 0){
-        this.game.over = true;
+        this.game.end();
+        this.game.over = "died";
         this.game.message = "YOU DIED"
     }
 }

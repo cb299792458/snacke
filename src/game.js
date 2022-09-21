@@ -3,6 +3,7 @@ const Snack = require("./snack.js")
 const Util = require("./util.js");
 const Obstacle = require("./obstacle.js");
 const Level = require("./levels.js");
+const FireBase = require("./firebase.js");
 const ANIMALS = [
     "beaver","cat","dog","fish","frog","lizard","monkey","pig",
     "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
@@ -16,7 +17,7 @@ function Game(dimX,dimY){
     this.obstacles = [];
     this.lives = 5;
     this.level = 0;
-    this.over = false;
+    this.over = "no";
     this.img = new Image();
     this.img.src = "grass.jpg";
     this.win = new Image();
@@ -30,7 +31,6 @@ function Game(dimX,dimY){
     this.winLength = 100;
     this.score = 0;
     this.snake = new Snake(this);
-
     this.startLevel();
 }
 
@@ -48,15 +48,15 @@ Game.prototype.startLevel = function(){
     this.topLogs = [];
     this.bottomLogs = [];
     this.level++;
-
+    
     while(this.snacks.length<this.maxSnacks){this.makeSnack()}
-
+    
     new Level(this,this.level);
     this.snake.reset();
-
+    
     this.drawBottomLogs = false;
     let that = this;
-    setInterval( () => that.drawBottomLogs = true, 1500);
+    setTimeout( () => that.drawBottomLogs = true, 1500);
 }
 
 Game.prototype.makeSnack = function(){
@@ -78,28 +78,41 @@ Game.prototype.makeObstacle = function(pos,type){
     }
 }
 
+Game.prototype.end = function(){
+    let name = prompt("Add your name to the Hall of Fame?", "Your Name");
+    this.sendScore([this.score,name]);
+    // this.level++;
+    // this.message ="Congratulations!";
+}
+
 Game.prototype.draw = function(context,info){
+    if(this.over==="no"){
+        
+        if(this.level===6){
+            this.over = "won";
+            context.drawImage(this.win,0,0);
+            this.end();
+            return;
+        }
 
-    if(this.level===6){
-        this.over = true;
-        context.drawImage(this.win,0,0);
-        return;
+        context.drawImage(this.img,0,0);
+        this.allObjects().forEach( (obj) => obj.draw(context) );
+        if(this.snake.maxLength < this.winLength){
+            this.topLogs.forEach( (obj) => obj.draw(context) );
+        }
+        if(this.drawBottomLogs){
+            this.bottomLogs.forEach( (obj) => obj.draw(context) );
+        }
+        
+        this.drawInfo(info);
     }
-
-    context.drawImage(this.img,0,0);
-    this.allObjects().forEach( (obj) => obj.draw(context) );
-    if(this.snake.maxLength < this.winLength){
-        this.topLogs.forEach( (obj) => obj.draw(context) );
-    }
-    if(this.drawBottomLogs){
-        this.bottomLogs.forEach( (obj) => obj.draw(context) );
-    }
-
-    this.drawInfo(info);
-    if(this.paused || this.over){
+    if(this.paused || this.over === "died"){
         context.textAlign = "center";
         context.fillStyle = "white";
-        if(this.over){ context.fillStyle = "red"; }
+        if(this.over === "died"){ 
+            // this.end();
+            context.fillStyle = "red"; 
+        }
         context.font = "96px serif";
         context.fillText(this.message,this.DIM_X/2,this.DIM_Y/2);
     }
@@ -107,9 +120,9 @@ Game.prototype.draw = function(context,info){
 
 Game.prototype.drawInfo = function(info){
     const icons = this.setIcons();
-    info.fillStyle = 'gray';
+    info.fillStyle = '#FEFEE2';
     info.fillRect(0,0,400,600);
-    info.fillStyle = 'black';
+    info.fillStyle = '#549D00';
     info.font = '24px Caveat Brush';
     info.fillText('Lives:', 10, 25);
     for(let i=0;i<this.lives;i++){
@@ -132,8 +145,7 @@ Game.prototype.drawInfo = function(info){
     info.fillText(`Powers:`, 10, 215);
     info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 265);
     info.fillText(`Level: ${this.level}`, 10, 315);
-    info.fillText(`Score: ${this.score}`, 10, 365);
-
+    info.fillText(`Score: ${this.score}`, 10, 355);
 }
 
 Game.prototype.setIcons = function(){
@@ -150,7 +162,7 @@ Game.prototype.moveObjects = function(){
 }
 
 Game.prototype.step = function(){
-    if(!this.over && !this.paused){
+    if(this.over === "no" && !this.paused){
         this.moveObjects();
         this.checkCollisions();
     }
@@ -167,8 +179,7 @@ Game.prototype.checkCollisions = function(){
         snake.hurt();
     }
     if(snake.selfBite()){
-        this.lives--;
-        snake.hurt();
+        snake.hurt(true);
     }
 
     // Check for eating
@@ -192,10 +203,39 @@ Game.prototype.destroy = function(obj){
 }
 
 Game.prototype.pause = function(){
+    // if(this.over === "died"){
+    //     this.gv.start();
+    // } else 
     if(!this.paused){
         this.paused = true;
         this.message = "GAME PAUSED";
     } else { this.paused = false}
+}
+
+Game.prototype.makeHighScoreTable = async function(){
+    let that = this;
+    let arr = await this.getScore()
+    this.scores = arr.slice();
+    
+    let sorted = this.scores.sort( function(a,b){
+        return b["data"][0] - a["data"][0];
+    });
+
+    const table = document.getElementById("high-scores")
+    for(let i=0;i<10;i++){
+        if(sorted[i]){
+            const row = document.createElement("tr");
+            const name = document.createElement("td");
+            const score = document.createElement("td");
+            const nameText = document.createTextNode(sorted[i]["data"][1]);
+            const scoreText = document.createTextNode(sorted[i]["data"][0]);
+            name.appendChild(nameText);
+            score.appendChild(scoreText);
+            row.appendChild(name);
+            row.appendChild(score);
+            table.appendChild(row);
+        }
+    }
 }
 
 module.exports = Game;

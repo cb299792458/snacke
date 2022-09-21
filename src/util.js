@@ -33,7 +33,8 @@ const Util = {
                 return true;
             }
         return false;
-    }
+    },
+
 };
 
 module.exports = Util;

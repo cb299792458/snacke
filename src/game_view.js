@@ -15,6 +15,9 @@ GameView.prototype.start = function(){
     const drawInt = setInterval(that.game.draw.bind(that.game,that.ctx,that.info),20);
     const stepInt = setInterval(that.game.step.bind(that.game),20);
     this.bindKeyHandlers();
+    this.game.getScore().then((arr)=> {
+        this.game.scores = arr;
+    })
 }
 
 

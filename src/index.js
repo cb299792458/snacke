@@ -1,8 +1,18 @@
 const Snake = require("./snake.js");
-const Game = require("./game.js")
-const GameView = require("./game_view.js")
+const Game = require("./game.js");
+const GameView = require("./game_view.js");
 
-import { initializeApp } from 'firebase/app';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDocs, getFirestore, query } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore"; 
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAxg8A0c7BS-2iACReC07XIrAh6cJm7tAA",
   authDomain: "snacke-7f207.firebaseapp.com",
@@ -10,21 +20,34 @@ const firebaseConfig = {
   storageBucket: "snacke-7f207.appspot.com",
   messagingSenderId: "4042206255",
   appId: "1:4042206255:web:180112e052b5d67d13aada",
-  measurementId: "G-NW07VHLBPW",
-  databaseURL: "https://snacke-7f207-default-rtdb.firebaseio.com"
+  measurementId: "G-NW07VHLBPW"
 };
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-import { getDatabase, ref, set } from "firebase/database";
+const db = getFirestore(app);
 
-function writeUserData(userId, name) {
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    username: name
-  });
+
+const sendScore = async function(highscore) {
+  // let that = this;
+  await addDoc(collection(db, "scores"),{
+    data: highscore
+  })
 }
 
-writeUserData(1,'b');
+const getScore = async function(){
+  let ref = collection(db,"scores");
+  const querySnapshot = await getDocs(ref);
+  let arr = [];
+  querySnapshot.forEach( (ele) => {
+    arr.push(ele.data());
+  })
+  // console.log(arr);
+  return arr;
+}
+
 
 window.addEventListener("keydown", (e) => { // Prevent Arrow Key Scroll
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)){
@@ -49,7 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const info = canvasInfo.getContext('2d');
 
     let game = new Game(WIDTH,HEIGHT);
+    game.sendScore = sendScore;
+    game.getScore = getScore;
     let gv = new GameView(game,ctx,info);
+    game.makeHighScoreTable();
+    // game.gv = gv;
     gv.start();
     
 })
