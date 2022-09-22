@@ -8,6 +8,15 @@ const ANIMALS = [
     "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
 ];
 const OBSTACLES = ["fire","ice","log","rock","water","tornado"];
+const blurbs = {
+    "rat": "more snacks spawn",
+    "fish": "swim through water",
+    "turtle": "block damage once",
+    "pig": "hold more snacks",
+    "cat": "extra life",
+    "dog": "bonus points",
+    "rabbit": "easier bonuses"
+}
 
 function Game(dimX,dimY){
     this.DIM_X = dimX;
@@ -160,7 +169,8 @@ Game.prototype.drawInfo = function(info){
 
     info.fillText(`Powers: DLC coming soon!`, 10, 400);
     for(let i=0;i<this.snake.powers.length;i++){
-        info.drawImage(icons[this.snake.powers[i]],10+(35*i),410,30,30);
+        info.drawImage(icons[this.snake.powers[i]],10,410+(30*i),30,30);
+        info.fillText(blurbs[this.snake.powers[i]],50,430+(30*i));
     }
 }
 

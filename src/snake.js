@@ -158,7 +158,7 @@ Snake.prototype.checkPowers = function(){
         this.stomachSize = 8;
     }
     if(this.usedTurtle){ //prevent infinite turtle
-        this.powers.splice(this.powers.indexOf("turtle",1));
+        this.powers.splice(this.powers.indexOf("turtle"),1);
     }
     
 }

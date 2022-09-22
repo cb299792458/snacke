@@ -1,3 +1,53 @@
-body{background-color:#fefee2;text-align:center;font-family:"Caveat Brush",cursive;color:#549d00}audio{position:absolute;left:0px;width:5%}.header{display:flex;justify-content:center}.lamb{position:absolute;left:0px}.links{position:absolute;right:0px}.container{display:flex;justify-content:center}.game{justify-self:center}.info{position:absolute;right:0px}.instructions{display:flex;flex-direction:column;position:absolute;font-size:24px;left:0px;width:400px}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+body {
+  background-color: #FEFEE2;
+  text-align: center;
+  font-family: "Caveat Brush", cursive;
+  color: #549D00;
+}
 
-/*# sourceMappingURL=main.css.map*/
+audio {
+  position: absolute;
+  left: 0px;
+  width: 5%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.lamb {
+  position: absolute;
+  left: 0px;
+}
+
+.links {
+  position: absolute;
+  right: 0px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.game {
+  justify-self: center;
+}
+
+.info {
+  position: absolute;
+  right: 0px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  font-size: 24px;
+  left: 0px;
+  width: 400px;
+}
