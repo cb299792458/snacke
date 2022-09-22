@@ -21,7 +21,7 @@ function Game(dimX,dimY){
     this.img.src = "grass.jpg";
     this.win = new Image();
     this.win.src = "win.png";
-    this.menu = ["fish","turtle"]; //make a default menu
+    this.menu = ["fish","turtle","pig","cat","dog","rabbit"]; //make a default menu
     // this.menu = ANIMALS;
     this.paused = true;
     this.message = "SSPACE TO SSTART"
@@ -151,11 +151,11 @@ Game.prototype.drawInfo = function(info){
     }
 
     info.fillText(`Stomach:`, 10, 240);
-    for(let i=0;i<this.snake.stomach.length && i <9;i++){
+    for(let i=0;i<this.snake.stomach.length && i <8;i++){
         info.drawImage(icons[this.snake.stomach[i]],10+(35*i),250,30,30);
     }
-    for(let i=9;i<this.snake.stomach.length && i<16;i++){
-        info.drawImage(icons[this.snake.stomach[i]],10+(35*(i-9)),310,30,30);
+    for(let i=8;i<this.snake.stomach.length && i<16;i++){
+        info.drawImage(icons[this.snake.stomach[i]],10+(35*(i-8)),280,30,30);
     }
 
     info.fillText(`Powers: DLC coming soon!`, 10, 400);

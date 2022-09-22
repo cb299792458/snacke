@@ -133,6 +133,9 @@ Snake.prototype.checkPowers = function(){
     let that = this;
     let powers = this.powers;
     let numRequired = 3;
+    if(powers.includes("rabbit")){
+        numRequired = 2;
+    }
     
     let carryOver = []; //Keep rewards
     REWARDS.forEach( function(animal){
@@ -149,9 +152,15 @@ Snake.prototype.checkPowers = function(){
     });
 
     this.powers = powers;
+    if(powers.includes("pig")){
+        this.stomachSize = 16;
+    } else {
+        this.stomachSize = 8;
+    }
     if(this.usedTurtle){ //prevent infinite turtle
         this.powers.splice(this.powers.indexOf("turtle",1));
     }
+    
 }
 
 

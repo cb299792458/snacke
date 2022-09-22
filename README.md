@@ -28,15 +28,17 @@ There are three types of powerups, Rewards, Perks, and Abilities. All three are 
 <h3>Rewards</h3>
 These powerups grant bonuses once the current level is complete
 <ul>
-    <li>Cat:
-    <li>Dog: 
+    <li>Cats have nine lives. You can have an extra.
+    <li>Dogs fetch extra points based on level.
 </ul>
 
 <h3>Perks</h3>
 These powerups grant temporary bonuses while held
 <ul>
-    <li>Rat:
-    <li>Fish:
+    <li>Rats will eat anything. More snacks will appear.
+    <li>Fish have gills and they can swim. You can too.
+    <li>Pigs love to eat. Doubles your stomach size.
+    <li>Rabbits are prolific. Activate bonuses more easily.
 </ul>
 
 <h3>Abilities</h3>
@@ -49,10 +51,6 @@ These powersups can be activated using movements while held
 
 
 PERKS:
-rat: lets more snacks spawn at a time
-turtle: grants a one time shield to prevent damage
-fish: allows movement through water
-pig: expands stomach to hold more snacks
 monkey: activacte abilities more easily
 rabbit: snack powers activate with fewer animals
 
@@ -64,17 +62,17 @@ snail: temporarily slow down snake
 beaver: remove a water obstacle
 
 PASSIVE
-cat: grants an extra life
 squirrel: allows adding a snack to menu
 raccoon: allows removing a snack from menu
-dog: grants bonus points
 
 <h2>Special Thanks</h2>
-Ayce, Kin, Peter, and Spencer
-Clarence, Ivy, William, any many others
-keymaster.js, Canvas API, Firebase
-https://www.favicon.cc/?action=icon&file_id=968880
-https://fonts.google.com/noto/specimen/Noto+Color+Emoji
-https://cainos.itch.io/pixel-art-top-down-basic
-https://www.fmbeats.kiwi/#house
-https://app.logo.com/
+<ul>
+    <li>Ayce, Kin, Peter, and Spencer
+    <li>Clarence, Ivy, William, any many others
+    <li>keymaster.js, Canvas API, Firebase
+    <li>https://www.favicon.cc/?action=icon&file_id=968880
+    <li>https://fonts.google.com/noto/specimen/Noto+Color+Emoji
+    <li>https://cainos.itch.io/pixel-art-top-down-basic
+    <li>https://www.fmbeats.kiwi/#house
+    <li>https://app.logo.com/
+</ul>
