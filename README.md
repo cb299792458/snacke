@@ -1,6 +1,6 @@
 <h1>Sneak Snack Snake</h1>
 <p>
-This is my roguelike/deckbuilding/snake game. 🐍
+Thisss isss my sssnake game. 🐍 Pleassse read before playing. 
 <a href="https://cb299792458.github.io/snacke/">Play Here</a>
 
 You're a sneaky snacking snake, and your goal is to use WASD controls to move around each level, eating all of the other delicious animal snacks in order to grow big and strong. Crashing into obstacles or yourself will end the game, which is harder and harder as you get longer. However, you are what you eat, and eating certain snacks will give you special powers. Some of these powers will be passively available, but others will need to be activated by making specific movements. (You don't have arms or legs 😅) Once you've eaten enough snacks and filled your stomach, you win!
