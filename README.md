@@ -47,12 +47,9 @@ These powersups can be activated using movements while held
     <li>DLC
 </ul>
 
-
-
-
+<!-- 
 PERKS:
 monkey: activacte abilities more easily
-rabbit: snack powers activate with fewer animals
 
 ABILITIES:
 frog: extends tongue to eat food at long range
@@ -63,7 +60,7 @@ beaver: remove a water obstacle
 
 PASSIVE
 squirrel: allows adding a snack to menu
-raccoon: allows removing a snack from menu
+raccoon: allows removing a snack from menu -->
 
 <h2>Special Thanks</h2>
 <ul>
