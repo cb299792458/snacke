@@ -22,13 +22,13 @@ function Game(dimX,dimY){
     this.win = new Image();
     this.win.src = "win.png";
     this.menu = ["rat","fish","turtle","pig","cat","dog","rabbit"]; //make a default menu
-    // this.menu = ANIMALS;
+    this.menu = ["rabbit","rabbit","pig"];
     this.paused = true;
     this.message = "SSPACE TO SSTART"
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
-    this.winLength = 300;
+    this.winLength = 200;
     this.score = 0;
     this.winMusic = new Audio('win.mp3');
     this.snake = new Snake(this);

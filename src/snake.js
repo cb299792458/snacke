@@ -21,7 +21,7 @@ Snake.prototype.reset = function(){
     this.vel = [0,-1];
     this.speed = 8;
     this.body = [];
-    this.maxLength = 60;
+    this.maxLength = 40;
     this.stomach = [];
     this.stomachSize = 8;
     this.invincible = false;
@@ -121,7 +121,7 @@ Snake.prototype.selfBite = function(){
 
 Snake.prototype.eat = function(snack){
     this.sound.play();
-    this.maxLength += 30;
+    this.maxLength += 20;
     this.game.score += 100*this.game.level
     this.stomach.unshift(snack.type);
     if(this.stomach.length>this.stomachSize){this.stomach.pop()};
