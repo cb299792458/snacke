@@ -89,7 +89,7 @@ Game.prototype.end = function(){
 Game.prototype.draw = function(context,info){
     if(this.over==="no"){
         
-        if(this.level===2){
+        if(this.level===6){
             this.winMusic.play();
             this.score += 5000;
             this.over = "won";
