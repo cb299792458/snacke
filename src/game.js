@@ -21,13 +21,14 @@ function Game(dimX,dimY){
     this.img.src = "grass.jpg";
     this.win = new Image();
     this.win.src = "win.png";
-    this.menu = ANIMALS.slice(0,14); //make a default menu
+    this.menu = ["fish","turtle"]; //make a default menu
+    // this.menu = ANIMALS;
     this.paused = true;
     this.message = "SSPACE TO SSTART"
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
-    this.winLength = 200;
+    this.winLength = 300;
     this.score = 0;
     this.winMusic = new Audio('win.mp3');
     this.snake = new Snake(this);
@@ -52,11 +53,18 @@ Game.prototype.startLevel = function(){
     while(this.snacks.length<this.maxSnacks){this.makeSnack()}
     
     new Level(this,this.level);
+    this.levelCleanUp();
     this.snake.reset();
     
     this.drawBottomLogs = false;
     let that = this;
     setTimeout( () => that.drawBottomLogs = true, 1500);
+}
+
+Game.prototype.levelCleanUp = function(){
+    const powers = this.snake.powers;
+    if(powers.includes("cat")){ this.lives++; }
+    if(powers.includes("dog")){ this.score += 1000*this.level; }
 }
 
 Game.prototype.makeSnack = function(){
@@ -126,28 +134,34 @@ Game.prototype.drawInfo = function(info){
     info.fillRect(0,0,400,600);
     info.fillStyle = '#549D00';
     info.font = '24px Caveat Brush';
-    info.fillText('Lives:', 10, 25);
+    info.fillText(`Level: ${this.level}`, 10, 30);
+    info.fillText(`Score: ${this.score}`, 10, 60);
+    info.fillText(`Length: ${this.snake.maxLength} mm / ${this.winLength} mm (for next level)`, 10, 90);
+    info.fillText('Lives:', 10, 120);
     for(let i=0;i<this.lives;i++){
-        info.drawImage(icons["snake"],70+(35*i),2.5,30,30);
+        info.drawImage(icons["snake"],70+(35*i),100,30,30);
     }
-    info.fillText('Menu:', 10, 75);
+
+    info.fillText('Menu:', 10, 150);
     for(let i=0;i<this.menu.length && i <9;i++){
-        info.drawImage(icons[this.menu[i]],75+(35*i),52.5,30,30);
+        info.drawImage(icons[this.menu[i]],10+(35*i),160,30,30);
     }
     for(let i=9;i<this.menu.length && i<16;i++){
-        info.drawImage(icons[this.menu[i]],75+(35*(i-9)),82.5,30,30);
+        info.drawImage(icons[this.menu[i]],10+(35*(i-9)),190,30,30);
     }
-    info.fillText(`Stomach:`, 10, 145);
-    for(let i=0;i<this.snake.stomach.length && i <8;i++){
-        info.drawImage(icons[this.snake.stomach[i]],100+(35*i),122.5,30,30);
+
+    info.fillText(`Stomach:`, 10, 240);
+    for(let i=0;i<this.snake.stomach.length && i <9;i++){
+        info.drawImage(icons[this.snake.stomach[i]],10+(35*i),250,30,30);
     }
-    for(let i=8;i<this.snake.stomach.length && i<16;i++){
-        info.drawImage(icons[this.snake.stomach[i]],100+(35*(i-8)),152.5,30,30);
+    for(let i=9;i<this.snake.stomach.length && i<16;i++){
+        info.drawImage(icons[this.snake.stomach[i]],10+(35*(i-9)),310,30,30);
     }
-    info.fillText(`Powers: DLC coming soon!`, 10, 215);
-    info.fillText(`Length: ${this.snake.maxLength} mm`, 10, 265);
-    info.fillText(`Level: ${this.level}`, 10, 315);
-    info.fillText(`Score: ${this.score}`, 10, 355);
+
+    info.fillText(`Powers: DLC coming soon!`, 10, 400);
+    for(let i=0;i<this.snake.powers.length;i++){
+        info.drawImage(icons[this.snake.powers[i]],10+(35*i),410,30,30);
+    }
 }
 
 Game.prototype.setIcons = function(){
@@ -188,14 +202,21 @@ Game.prototype.checkCollisions = function(){
     this.snacks.forEach( function(snack){
         if(Util.hypotenuse(snack.pos,snake.pos)<snake.headRadius+snack.radius){
             snake.eat(snack);
-            game.makeSnack();
+        }
+        if(game.snacks.length < game.maxSnacks || 
+            (game.snake.powers.includes("rat") && game.snacks.length < game.maxSnacks + 2)){
+                game.makeSnack();
         }
     });
 
     // Check for obstacles
     this.obstacles.forEach( function(obstacle){
         if(Util.hypotenuse(obstacle.pos,snake.pos)<snake.headRadius+obstacle.radius/2){
-            snake.hit(obstacle);
+            if(obstacle.type==="water" && snake.powers.includes("fish")){
+                
+            } else {
+                snake.hit(obstacle);
+            }
         }
     })
 }
@@ -207,7 +228,7 @@ Game.prototype.destroy = function(obj){
 Game.prototype.pause = function(){
     if(!this.paused){
         this.paused = true;
-        this.message = "GAME PAUSSED";
+        this.message = "GAME PAUSED";
     } else { this.paused = false}
 }
 

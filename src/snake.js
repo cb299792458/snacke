@@ -1,5 +1,12 @@
 // const Game = require("./game.js");
 const Util = require("./util.js");
+const ANIMALS = [
+    "beaver","cat","dog","fish","frog","lizard","monkey","pig",
+    "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
+];
+const REWARDS = [
+    "cat","dog","squirrel","raccoon"
+]
 
 function Snake(game){
     this.game = game;
@@ -14,10 +21,12 @@ Snake.prototype.reset = function(){
     this.vel = [0,-1];
     this.speed = 8;
     this.body = [];
-    this.maxLength = 40;
+    this.maxLength = 60;
     this.stomach = [];
-    this.stomachSize = 9;
+    this.stomachSize = 8;
     this.invincible = false;
+    this.powers = [];
+    this.usedTurtle = false;
 }
 
 Snake.prototype.move = function(){
@@ -112,12 +121,39 @@ Snake.prototype.selfBite = function(){
 
 Snake.prototype.eat = function(snack){
     this.sound.play();
-    this.maxLength += 20;
+    this.maxLength += 30;
     this.game.score += 100*this.game.level
     this.stomach.unshift(snack.type);
     if(this.stomach.length>this.stomachSize){this.stomach.pop()};
     this.game.destroy(snack);
+    this.checkPowers();
 }
+
+Snake.prototype.checkPowers = function(){
+    let that = this;
+    let powers = this.powers;
+    let numRequired = 3;
+    
+    let carryOver = []; //Keep rewards
+    REWARDS.forEach( function(animal){
+        if(powers.includes(animal)){
+            carryOver.push(animal);
+        }
+    });
+
+    powers = carryOver; //Add powers based on stomach
+    ANIMALS.forEach( function(animal) {
+        if(that.stomachContains(animal,numRequired) && !powers.includes(animal)){
+            powers.push(animal);
+        }
+    });
+
+    this.powers = powers;
+    if(this.usedTurtle){ //prevent infinite turtle
+        this.powers.splice(this.powers.indexOf("turtle",1));
+    }
+}
+
 
 Snake.prototype.stomachContains = function(animal,num){
     let count = 0;
@@ -129,8 +165,14 @@ Snake.prototype.stomachContains = function(animal,num){
 
 Snake.prototype.hurt = function(selfbit){
     if(!this.invincible){
-        if(selfbit){this.game.lives--;}
-        this.game.lives--;
+        if(!this.powers.includes("turtle")){
+            if(selfbit){this.game.lives--;}
+            this.game.lives--;
+        } else  {
+            this.usedTurtle = true;
+        }
+        this.powers.splice(this.powers.indexOf("turtle",1));
+
         this.invincible = true;
         let that = this;
         setTimeout( function(){ that.invincible = false;}, 1500)
