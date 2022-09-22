@@ -30,8 +30,7 @@ function Game(dimX,dimY){
     this.img.src = "grass.jpg";
     this.win = new Image();
     this.win.src = "win.png";
-    this.menu = ["rat","fish","turtle","pig","cat","dog","rabbit"]; //make a default menu
-    // this.menu = ["rabbit","rabbit","pig"];
+    this.menu = ["rat","fish","turtle","pig","cat","dog","rabbit"];
     this.paused = true;
     this.message = "SSPACE TO SSTART"
     this.topLogs = [];
