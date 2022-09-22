@@ -3,7 +3,6 @@ const Snack = require("./snack.js")
 const Util = require("./util.js");
 const Obstacle = require("./obstacle.js");
 const Level = require("./levels.js");
-const FireBase = require("./firebase.js");
 const ANIMALS = [
     "beaver","cat","dog","fish","frog","lizard","monkey","pig",
     "rabbit","raccoon","rat","snail","squirrel","turtle","snake"
