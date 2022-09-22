@@ -23,7 +23,7 @@ function Game(dimX,dimY){
     this.win.src = "win.png";
     this.menu = ANIMALS.slice(0,14); //make a default menu
     this.paused = true;
-    this.message = "SPACE TO START"
+    this.message = "SSPACE TO SSTART"
     this.topLogs = [];
     this.bottomLogs = [];
     this.maxSnacks = 3;
@@ -207,7 +207,7 @@ Game.prototype.destroy = function(obj){
 Game.prototype.pause = function(){
     if(!this.paused){
         this.paused = true;
-        this.message = "GAME PAUSED";
+        this.message = "GAME PAUSSED";
     } else { this.paused = false}
 }
 
