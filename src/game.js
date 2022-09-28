@@ -235,7 +235,7 @@ Game.prototype.destroy = function(obj){
 }
 
 Game.prototype.pause = function(){
-    if(!this.paused){
+    if(!this.paused && this.over==="no"){
         this.paused = true;
         this.message = "GAME PAUSED";
     } else { this.paused = false}
