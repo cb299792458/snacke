@@ -140,7 +140,7 @@ Game.prototype.drawInfo = function(info){
     const icons = this.setIcons();
     info.fillStyle = '#FEFEE2';
     info.fillRect(0,0,400,600);
-    info.fillStyle = '#549D00';
+    info.fillStyle = '#80c27d';
     info.font = '24px Caveat Brush';
     info.fillText(`Level: ${this.level}`, 10, 30);
     info.fillText(`Score: ${this.score}`, 10, 60);

@@ -12,6 +12,7 @@ function Snake(game){
     this.game = game;
     this.headRadius = 20;
     this.color = '#0BDA51';
+    this.color = '#549D00';
     this.sound = new Audio('nom.mp3');
     this.reset();
 }
