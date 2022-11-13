@@ -10,9 +10,9 @@ As you play through the game, levels will get harder, in the form of obstacles s
 
 The game will be hosted online, with highscores saved globally using Firebase. A single html page will store all necessary information.
 
-Thanks to all of these games and their creators for inspiration: Snake, Slither.io, Slay the Spire, One Step from Eden, Peglin, Roundguard, SNKRX, Crypt of the Necrodancer, Super Auto Pets, Unrailed, Enter the Gungeon, and many more.
+Thanks to all of these games and their creators for inspiration: Snake, Slither.io, Slay the Spire, One Step from Eden, Peglin, Roundguard, SNKRX, Crypt of the Necrodancer, Super Auto Pets, Unrailed, Enter the Gungeon, Starcraft: Brood War and many more.
 
-No thanks to League of Legends for being a cesspool of toxicity and frustration, and causing generations of gamers to hemorrhage time and money into a bottomless pit of pain and despair.
+No thanks to League of Legends.
 </p>
 
 <h2>Obstacles</h2>
