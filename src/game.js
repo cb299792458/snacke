@@ -144,7 +144,7 @@ Game.prototype.drawInfo = function(info){
     info.font = '24px Caveat Brush';
     info.fillText(`Level: ${this.level}`, 10, 30);
     info.fillText(`Score: ${this.score}`, 10, 60);
-    info.fillText(`Length: ${this.snake.maxLength} mm / ${this.winLength} mm (for next level)`, 10, 90);
+    info.fillText(`Length: ${this.snake.maxLength/100} m / ${this.winLength/100} m (for next level)`, 10, 90);
     info.fillText('Lives:', 10, 120);
     for(let i=0;i<this.lives;i++){
         info.drawImage(icons["snake"],70+(35*i),100,30,30);
