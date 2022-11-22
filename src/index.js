@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     game.getScore = getScore;
     let gv = new GameView(game,ctx,info);
     game.makeHighScoreTable();
-    // game.gv = gv;
     gv.start();
     
 })

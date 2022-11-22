@@ -100,6 +100,10 @@ Game.prototype.end = function(){
     this.sendScore([this.score,name]);
     // this.level++;
     // this.message ="Congratulations!";
+
+    setTimeout(()=>{
+        location.reload();
+    },"3000");
 }
 
 Game.prototype.draw = function(context,info){
@@ -147,37 +151,37 @@ Game.prototype.drawInfo = function(info){
     info.fillText(`Score: ${this.score}`, 10, 60);
     info.fillText(`Length: ${this.snake.maxLength/10} m / ${this.winLength/10} m (for next level)`, 10, 90);
 
-    info.fillText('Lives:', 10, 150);
+    info.fillText('Lives:', 10, 120);
     for(let i=0;i<this.lives;i++){
-        info.drawImage(icons["snake"],10+(35*i),160,30,30);
+        info.drawImage(icons["snake"],10+(35*i),130,30,30);
     }
 
-    info.fillText('Menu (eat these):', 10, 240);
+    info.fillText('Snacks (eat these):', 10, 210);
     for(let i=0;i<this.menu.length && i <9;i++){
-        info.drawImage(icons[this.menu[i]],10+(35*i),250,30,30);
+        info.drawImage(icons[this.menu[i]],10+(35*i),220,30,30);
     }
     // for(let i=9;i<this.menu.length && i<16;i++){
         // info.drawImage(icons[this.menu[i]],10+(35*(i-9)),280,30,30);
     // }
 
-    info.fillText('Obstacles (avoid):', 10, 330);
+    info.fillText('Obstacles (avoid):', 10, 300);
     for(let i=0;i<OBSTACLES.length && i <9;i++){
-        info.drawImage(icons[OBSTACLES[i]],10+(35*i),340,30,30);
+        info.drawImage(icons[OBSTACLES[i]],10+(35*i),310,30,30);
     }
-    console.log(this.obstacles);
+    // console.log(this.obstacles);
 
-    info.fillText(`Stomach:`, 10, 420);
+    info.fillText(`Stomach:`, 10, 390);
     for(let i=0;i<this.snake.stomach.length && i <8;i++){
-        info.drawImage(icons[this.snake.stomach[i]],10+(35*i),250,30,30);
+        info.drawImage(icons[this.snake.stomach[i]],10+(35*i),400,30,30);
     }
     for(let i=8;i<this.snake.stomach.length && i<16;i++){
-        info.drawImage(icons[this.snake.stomach[i]],10+(35*(i-8)),280,30,30);
+        info.drawImage(icons[this.snake.stomach[i]],10+(35*(i-8)),430,30,30);
     }
 
-    info.fillText(`Powers:`, 10, 510);
+    info.fillText(`Powers:`, 10, 480);
     for(let i=0;i<this.snake.powers.length;i++){
-        info.drawImage(icons[this.snake.powers[i]],10,410+(30*i),30,30);
-        info.fillText(blurbs[this.snake.powers[i]],50,430+(30*i));
+        info.drawImage(icons[this.snake.powers[i]],10,490+(30*i),30,30);
+        info.fillText(blurbs[this.snake.powers[i]],50,520+(30*i));
     }
 }
 
@@ -268,7 +272,7 @@ Game.prototype.makeHighScoreTable = async function(){
             const row = document.createElement("tr");
             const name = document.createElement("td");
             const score = document.createElement("td");
-            const nameText = document.createTextNode(sorted[i]["data"][1]);
+            const nameText = document.createTextNode(sorted[i]["data"][1] || "A Sneaky Snake");
             const scoreText = document.createTextNode(sorted[i]["data"][0]);
             name.appendChild(nameText);
             score.appendChild(scoreText);

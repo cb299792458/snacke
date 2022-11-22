@@ -8,6 +8,7 @@ body {
 audio {
     position: absolute;
     left: 0px;
+    bottom: 0px;
     // width: 5%;
 }
 
@@ -25,6 +26,7 @@ audio {
 .links {
     position: absolute;
     right: 0px;
+    bottom: 0px;
 }
 
 .container {
@@ -36,12 +38,16 @@ audio {
 .game {
     justify-self: center;
     // border: solid blue 1px;
+    // width: 70%;
+    flex: none;
 }
 
 .info {
     position: absolute;
     right: 0px;
     // border: solid red 1px;
+    // width: 15%;
+    flex-shrink: 1;
 }
 
 .instructions {
@@ -51,10 +57,10 @@ audio {
     position: absolute;
     font-size: 24px;
     left: 0px;
-    width: 400px;
+    flex-shrink: 1;
+    width: 300px;
 }
 
 .controls p {
     font-size: 24px;
 }
-

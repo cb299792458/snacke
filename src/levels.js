@@ -20,7 +20,8 @@ function Level(game, num){
 
     switch(num){
         case 1:
-            obstacles["water"].push([game.DIM_X/2,game.DIM_Y/2]);
+            obstacles["water"].push([3*game.DIM_X/4,game.DIM_Y/2]);
+            obstacles["water"].push([game.DIM_X/4,game.DIM_Y/2]);
             break;
         case 2:
             obstacles["fire"].push([game.DIM_X/4,game.DIM_Y/4]);
